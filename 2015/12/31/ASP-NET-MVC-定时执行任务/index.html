@@ -57,16 +57,16 @@
 
 
 
-<meta name="description" content="摘要 ：我的博客搭建好了，基于hexo框架、NexT.Pisces主题。很简洁明了的界面，是不是很喜欢~">
+<meta name="description" content="摘要 系统中定时执行某个任务是比较常用的功能，基于软件很好实现此功能。但是在网页中，要怎么实现定时执行任务呢。这里就简单说说在asp.net mvc中如何实现定时执行某个功能的方法。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="属于我自己的博客搭建好了~">
-<meta property="og:url" content="http://yoursite.com/2015/12/18/my-new-post/index.html">
+<meta property="og:title" content="ASP.NET MVC 定时执行任务">
+<meta property="og:url" content="http://yoursite.com/2015/12/31/ASP-NET-MVC-定时执行任务/index.html">
 <meta property="og:site_name" content="WanGzhE's blog">
-<meta property="og:description" content="摘要 ：我的博客搭建好了，基于hexo框架、NexT.Pisces主题。很简洁明了的界面，是不是很喜欢~">
-<meta property="og:updated_time" content="2015-12-19T15:45:13.382Z">
+<meta property="og:description" content="摘要 系统中定时执行某个任务是比较常用的功能，基于软件很好实现此功能。但是在网页中，要怎么实现定时执行任务呢。这里就简单说说在asp.net mvc中如何实现定时执行某个功能的方法。">
+<meta property="og:updated_time" content="2015-12-31T10:17:42.911Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="属于我自己的博客搭建好了~">
-<meta name="twitter:description" content="摘要 ：我的博客搭建好了，基于hexo框架、NexT.Pisces主题。很简洁明了的界面，是不是很喜欢~">
+<meta name="twitter:title" content="ASP.NET MVC 定时执行任务">
+<meta name="twitter:description" content="摘要 系统中定时执行某个任务是比较常用的功能，基于软件很好实现此功能。但是在网页中，要怎么实现定时执行任务呢。这里就简单说说在asp.net mvc中如何实现定时执行某个功能的方法。">
 
 
 
@@ -84,7 +84,7 @@
   };
 </script>
 
-  <title> 属于我自己的博客搭建好了~ | WanGzhE's blog </title>
+  <title> ASP.NET MVC 定时执行任务 | WanGzhE's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -232,7 +232,7 @@
             
             
               
-                属于我自己的博客搭建好了~
+                ASP.NET MVC 定时执行任务
               
             
           </h1>
@@ -244,8 +244,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-12-18T23:06:39+08:00" content="2015-12-18">
-              2015-12-18
+            <time itemprop="dateCreated" datetime="2015-12-31T18:17:01+08:00" content="2015-12-31">
+              2015-12-31
             </time>
           </span>
 
@@ -255,8 +255,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/12/18/my-new-post/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/18/my-new-post/" itemprop="commentsCount"></span>
+                <a href="/2015/12/31/ASP-NET-MVC-定时执行任务/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/31/ASP-NET-MVC-定时执行任务/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -277,187 +277,67 @@
       
 
       
-        <p><em>摘要</em> ：我的博客搭建好了，基于<a href="https://github.com/tommy351/hexo" target="_blank" rel="external">hexo</a>框架、<a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="external">NexT.Pisces</a>主题。很简洁明了的界面，是不是很喜欢~</p>
-<a id="more"></a>
-<h3 id="u7ECF_u8FC7_u4E24_u5929_u7684_u6298_u817E_u6211_u81EA_u5DF1_u535A_u5BA2_u7EC8_u4E8E_u642D_u5EFA_u597D_u4E86_uFF01_uFF01_uFF01"><a href="#u7ECF_u8FC7_u4E24_u5929_u7684_u6298_u817E_u6211_u81EA_u5DF1_u535A_u5BA2_u7EC8_u4E8E_u642D_u5EFA_u597D_u4E86_uFF01_uFF01_uFF01" class="headerlink" title="经过两天的折腾我自己博客终于搭建好了！！！"></a>经过两天的折腾我自己博客终于搭建好了！！！</h3><hr>
-<p>代码如下<br>C：</p>
-<pre><code>#include &lt;sys/types.h&gt;
-#include &lt;linux/sem.h&gt;
-#include &lt;linux/shm.h&gt;
-#include &lt;unistd.h&gt;
-#include &lt;stdio.h&gt;
-#include &lt;errno.h&gt;
-#include &lt;time.h&gt;
-/******定义总共放多少次******/
-#define END 6 
-/******定义3个信号量的内部标识******/
-int SA;
-int SO;
-int mutex;
-/******定义共享内存ID******/
-int numid;
-/******定义共享内存虚拟地址******/
-int *num;
-
-int main()
+        <p><em>摘要</em> 系统中定时执行某个任务是比较常用的功能，基于软件很好实现此功能。但是在网页中，要怎么实现定时执行任务呢。这里就简单说说在asp.net mvc中如何实现定时执行某个功能的方法。<br><a id="more"></a><br>根据不同需求，在web开发中，有时候我们可能要定时的执行一下任务，比如定时更新网站数据，这时我们就需要做一个定时执行更新的操作，但由于web的http是无状态的连接，如何才能时时进行任务的更新呢?</p>
+<h2 id="1-__u9996_u5148_u4FEE_u6539Glocal-asax_u6587_u4EF6_uFF0C_u5728Application_Start_u65B9_u6CD5_u6700_u4E0B_u9762_u52A0_u5165_uFF1A"><a href="#1-__u9996_u5148_u4FEE_u6539Glocal-asax_u6587_u4EF6_uFF0C_u5728Application_Start_u65B9_u6CD5_u6700_u4E0B_u9762_u52A0_u5165_uFF1A" class="headerlink" title="1. 首先修改Glocal.asax文件，在Application_Start方法最下面加入："></a>1. 首先修改Glocal.asax文件，在Application_Start方法最下面加入：</h2><pre><code>//定义定时器
+//1000表示1秒的意思
+ System.Timers.Timer myTimer = new System.Timers.Timer(1000);
+//TaskAction.SetContent 表示要调用的方法
+myTimer.Elapsed += new System.Timers.ElapsedEventHandler(TaskAction.SetContent);
+myTimer.Enabled = true;
+myTimer.AutoReset = true;
+</code></pre><p>以上代码在应用程序启动时运行。</p>
+<h2 id="2-__u5728Glocal-asax_u6587_u4EF6_u4E2D_u52A0_u5165_u5982_u4E0B_u65B9_u6CD5_uFF1A"><a href="#2-__u5728Glocal-asax_u6587_u4EF6_u4E2D_u52A0_u5165_u5982_u4E0B_u65B9_u6CD5_uFF1A" class="headerlink" title="2. 在Glocal.asax文件中加入如下方法："></a>2. 在Glocal.asax文件中加入如下方法：</h2><pre><code>void Session_End(object sender, EventArgs e)
 {
-    /******定义信号量所用的数据结构******/
-    struct sembuf P, V;
-    union semun arg;
-    /******创建共享内存******/
-    numid = shmget(IPC_PRIVATE, sizeof( int ), IPC_CREAT|0666);
-    /******初始化共享内存******/
-    num = (int *) shmat(numid, 0, 0);
-    *num = 0;
-    /******创建信号量******/
-    SA = semget(IPC_PRIVATE, 1, IPC_CREAT | 0666);
-    SO = semget(IPC_PRIVATE, 1, IPC_CREAT | 0666);
-    mutex = semget(IPC_PRIVATE, 1, IPC_CREAT | 0666);
-    /******初始化信号量******/
-    arg.val = 0;                /*初始时缓冲区中无数据*/
-    if (semctl(SA, 0, SETVAL, arg) == -1) perror(&quot;semctl setval error&quot;);
-    arg.val = 0;        /*初始时缓冲区中无数据*/
-    if (semctl(SO, 0, SETVAL, arg) == -1) perror(&quot;semctl setval error&quot;);
-    arg.val = 1;                /*初始时互斥信号为1，允许一个进程进入*/
-    if (semctl(mutex, 0, SETVAL, arg) == -1) perror(&quot;setctl setval error&quot;);
-    /******初始化P,V操作******/
-    P.sem_num = 0;
-    P.sem_op = -1;            /*P操作需要-1*/
-    P.sem_flg = SEM_UNDO;
-    V.sem_num = 0;
-    V.sem_op = 1;            /*V操作需要+1*/
-    V.sem_flg = SEM_UNDO;
+    //下面的代码是关键，可解决IIS应用程序池自动回收的问题
+    System.Threading.Thread.Sleep(1000);
+    //触发事件, 写入提示信息
+    TaskAction.SetContent();
+    //这里设置你的web地址，可以随便指向你的任意一个aspx页面甚至不存在的页面，目的是要激发Application_Start
+    //使用您自己的URL
+    string url = &quot;http://localhost:3813&quot;;
+    System.Net.HttpWebRequest myHttpWebRequest = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(url);
+    System.Net.HttpWebResponse myHttpWebResponse = (System.Net.HttpWebResponse)myHttpWebRequest.GetResponse();
+    System.IO.Stream receiveStream = myHttpWebResponse.GetResponseStream();//得到回写的字节流
 
-    int father, mother, son, daughter;
-
-    /******father进程******/
-    while ((father = fork()) == -1);
-    if (father == 0)
-    {
-        while (1)
-        {
-            if(*num &gt;= END)
-                break;
-            semop(mutex, &amp;P, 1);            /*执行P(mutex)*/
-            printf(&quot;Father puts an apple.\n&quot;);
-            semop(SA, &amp;V, 1);        /*执行V(SA)*/
-            sleep(1);
-        }
-        printf(&quot;Father is over.\n&quot;);
-        exit(0);
-    }
-    else
-    {
-        /******mother进程******/
-        while ((mother = fork()) == -1);
-        if (mother == 0)
-        {
-            while (1)
-            {
-                if(*num &gt;= END)
-                    break;
-                semop(mutex, &amp;P, 1);        /*执行P(mutex)*/
-                printf(&quot;Mother puts an orange.\n&quot;);
-                semop(SO, &amp;V, 1);        /*执行V(SO)*/
-                sleep(1);
-            }
-            printf(&quot;Mother is over.\n&quot;);
-            exit(0);
-        }
-        else
-        {
-            /******daughter进程******/
-            while ((daughter = fork()) == -1);
-            if (daughter == 0)
-            {
-                while (1)
-                {
-                    if(*num &gt;= END)
-                        break;
-                    semop(SA, &amp;P, 1);            /*执行P(SA)*/
-                    printf(&quot;Daughter gets an apple.\n&quot;);
-                    (*num)++;
-                    semop(mutex, &amp;V, 1);        /*执行V(mutex)*/
-                    printf(&quot;Daughter eats an apple.\n&quot;);
-                    sleep(1);
-                }
-                printf(&quot;Daughter is over.\n&quot;);
-                exit(0);
-            }
-            else
-            {
-                /******son进程******/
-                while ((son = fork()) == -1);
-                if (son == 0)
-                {                    
-                    while (1)
-                    {
-                        if(*num &gt;= END)
-                            break;
-                        semop(SO, &amp;P, 1);            /*执行P(SO)*/
-                        printf(&quot;Son gets an orange.\n&quot;);
-                        (*num)++;
-                        semop(mutex, &amp;V, 1);        /*执行V(mutex)*/
-                        printf(&quot;Son eats an orange.\n&quot;);
-                        sleep(1);
-                    }
-                    printf(&quot;Son is over.\n&quot;);
-                    exit(0);
-                }
-            }
-        }
-    }
-    /******父进程回收子进程******/
-    wait(0);
-    wait(0);
-    wait(0);
-    wait(0);
-    /******断开并撤销共享内存******/
-    shmdt(num);
-    shmctl(numid, IPC_RMID, 0);
-    /******撤消信号量******/
-    semctl(SA, IPC_RMID, 0);
-    semctl(SO, IPC_RMID, 0);
-    semctl(mutex, IPC_RMID, 0);
-
-    printf(&quot;All over.\n&quot;);
-    exit(0);
+    // 在会话结束时运行的代码。
+    // 注意: 只有在 Web.config 文件中的 sessionstate 模式设置为 InProc 时，才会引发 Session_End 事件。
+    // 如果会话模式设置为 StateServer
+    // 或 SQLServer，则不会引发该事件。
 }
-</code></pre><hr>
-<hr>
-<blockquote>
-<p>举头望明月<br>低头思故乡</p>
-</blockquote>
-<hr>
-<table>
-<thead>
-<tr>
-<th>dog</th>
-<th>bird</th>
-<th>cat</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>foo</td>
-<td>foo</td>
-<td>foo</td>
-</tr>
-<tr>
-<td>bar</td>
-<td>bar</td>
-<td>bar</td>
-</tr>
-<tr>
-<td>baz</td>
-<td>baz</td>
-<td>baz</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<p> 比如说C语言中的<code>printf()</code>函数</p>
-<p><a href="&#109;&#x61;&#x69;&#x6c;&#x74;&#111;&#58;&#x38;&#49;&#57;&#51;&#x39;&#48;&#57;&#x32;&#64;&#113;&#113;&#x2e;&#99;&#x6f;&#109;">&#x38;&#49;&#57;&#51;&#x39;&#48;&#57;&#x32;&#64;&#113;&#113;&#x2e;&#99;&#x6f;&#109;</a></p>
+</code></pre><h2 id="3_u3001_u521B_u5EFA_u4EE5_u4E0A_u4E24_u4E2A_u65B9_u6CD5_u7528_u5230_u7684_u7C7B_uFF1A"><a href="#3_u3001_u521B_u5EFA_u4EE5_u4E0A_u4E24_u4E2A_u65B9_u6CD5_u7528_u5230_u7684_u7C7B_uFF1A" class="headerlink" title="3、创建以上两个方法用到的类："></a>3、创建以上两个方法用到的类：</h2><pre><code>public static class TaskAction
+{
+    private static string content = &quot;&quot;;
+    /// &lt;summary&gt;
+    /// 输出信息存储的地方.
+    /// &lt;/summary&gt;
+    public static string Content
+    {
+        get { return TaskAction.content; }
+        set { TaskAction.content += &quot;&lt;div&gt;&quot; + value + &quot;&lt;/div&gt;&quot;; }
+    }
+    /// &lt;summary&gt;
+    /// 定时器委托任务 调用的方法
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;source&quot;&gt;&lt;/param&gt;
+    /// &lt;param name=&quot;e&quot;&gt;&lt;/param&gt;
+    public static void SetContent(object source, ElapsedEventArgs e)
+    {
+        if (DateTime.Now.ToString(&quot;HH:mm:ss&quot;) == &quot;11:35:00&quot;)
+        {
+            //这里写你定时执行的代码
+            YourTask();
+        }
+    }
+    /// &lt;summary&gt;
+    /// 应用池回收的时候调用的方法
+    /// &lt;/summary&gt;
+    public static void SetContent()
+    {
+        Content = &quot;END: &quot; + DateTime.Now.ToString(&quot;yyyy-MM-dd HH:mm:ss&quot;);
+    }
+}
+</code></pre><p>原理：Global.asax 可以是asp.net中应用程序或会话事件处理程序，我们用到了Application_Start(应用程序开始事件)和Application_End(应用程序结束事件)。当应用程序开始时，启动一个定时器，用来定时执行任务YourTask()方法，这个方法里面可以写上需要调用的逻辑代码，可以是单线程和多线程。当应用程序结束时，如IIS的应用程序池回收，让asp.net去访问当前的这个web地址。这里需要访问一个aspx页面，这样就可以重新激活应用程序。</p>
+<p>局限性：可以解决应用程序池自动或者手动回收，但是无法解决IIS重启或者web服务器重启的问题，当然这种情况出现的时候不多，而且如果有人访问你的网站的时候，又会自动激活计划任务了。</p>
 
       
     </div>
@@ -469,17 +349,13 @@ int main()
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/12/18/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2015/12/18/my-new-post/" rel="next" title="属于我自己的博客搭建好了~">
+                <i class="fa fa-chevron-left"></i> 属于我自己的博客搭建好了~
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/12/31/ASP-NET-MVC-定时执行任务/" rel="prev" title="ASP.NET MVC 定时执行任务">
-                ASP.NET MVC 定时执行任务 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -494,10 +370,10 @@ int main()
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2015/12/18/my-new-post/"
-     data-title="属于我自己的博客搭建好了~"
+        <div class="ds-share flat" data-thread-key="2015/12/31/ASP-NET-MVC-定时执行任务/"
+     data-title="ASP.NET MVC 定时执行任务"
      data-content=""
-     data-url="http://yoursite.com/2015/12/18/my-new-post/">
+     data-url="http://yoursite.com/2015/12/31/ASP-NET-MVC-定时执行任务/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -524,8 +400,8 @@ int main()
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2015/12/18/my-new-post/"
-           data-title="属于我自己的博客搭建好了~" data-url="http://yoursite.com/2015/12/18/my-new-post/">
+      <div class="ds-thread" data-thread-key="2015/12/31/ASP-NET-MVC-定时执行任务/"
+           data-title="ASP.NET MVC 定时执行任务" data-url="http://yoursite.com/2015/12/31/ASP-NET-MVC-定时执行任务/">
       </div>
     
   </div>
@@ -642,7 +518,7 @@ int main()
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#u7ECF_u8FC7_u4E24_u5929_u7684_u6298_u817E_u6211_u81EA_u5DF1_u535A_u5BA2_u7EC8_u4E8E_u642D_u5EFA_u597D_u4E86_uFF01_uFF01_uFF01"><span class="nav-number">1.</span> <span class="nav-text">经过两天的折腾我自己博客终于搭建好了！！！</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-__u9996_u5148_u4FEE_u6539Glocal-asax_u6587_u4EF6_uFF0C_u5728Application_Start_u65B9_u6CD5_u6700_u4E0B_u9762_u52A0_u5165_uFF1A"><span class="nav-number">1.</span> <span class="nav-text">1. 首先修改Glocal.asax文件，在Application_Start方法最下面加入：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-__u5728Glocal-asax_u6587_u4EF6_u4E2D_u52A0_u5165_u5982_u4E0B_u65B9_u6CD5_uFF1A"><span class="nav-number">2.</span> <span class="nav-text">2. 在Glocal.asax文件中加入如下方法：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3_u3001_u521B_u5EFA_u4EE5_u4E0A_u4E24_u4E2A_u65B9_u6CD5_u7528_u5230_u7684_u7C7B_uFF1A"><span class="nav-number">3.</span> <span class="nav-text">3、创建以上两个方法用到的类：</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
