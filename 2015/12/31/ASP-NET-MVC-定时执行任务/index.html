@@ -57,16 +57,16 @@
 
 
 
-<meta name="description" content="摘要 系统中定时执行某个任务是比较常用的功能，基于软件很好实现此功能。但是在网页中，要怎么实现定时执行任务呢。这里就简单说说在asp.net mvc中如何实现定时执行某个功能的方法。">
+<meta name="description" content="摘要： 系统中定时执行某个任务是比较常用的功能，基于软件很好实现此功能。但是在网页中，要怎么实现定时执行任务呢。这里就简单说说在asp.net mvc中如何实现定时执行某个功能的方法。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ASP.NET MVC 定时执行任务">
 <meta property="og:url" content="http://yoursite.com/2015/12/31/ASP-NET-MVC-定时执行任务/index.html">
 <meta property="og:site_name" content="WanGzhE's blog">
-<meta property="og:description" content="摘要 系统中定时执行某个任务是比较常用的功能，基于软件很好实现此功能。但是在网页中，要怎么实现定时执行任务呢。这里就简单说说在asp.net mvc中如何实现定时执行某个功能的方法。">
-<meta property="og:updated_time" content="2015-12-31T10:17:42.911Z">
+<meta property="og:description" content="摘要： 系统中定时执行某个任务是比较常用的功能，基于软件很好实现此功能。但是在网页中，要怎么实现定时执行任务呢。这里就简单说说在asp.net mvc中如何实现定时执行某个功能的方法。">
+<meta property="og:updated_time" content="2016-06-22T04:47:00.302Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ASP.NET MVC 定时执行任务">
-<meta name="twitter:description" content="摘要 系统中定时执行某个任务是比较常用的功能，基于软件很好实现此功能。但是在网页中，要怎么实现定时执行任务呢。这里就简单说说在asp.net mvc中如何实现定时执行某个功能的方法。">
+<meta name="twitter:description" content="摘要： 系统中定时执行某个任务是比较常用的功能，基于软件很好实现此功能。但是在网页中，要怎么实现定时执行任务呢。这里就简单说说在asp.net mvc中如何实现定时执行某个功能的方法。">
 
 
 
@@ -277,7 +277,7 @@
       
 
       
-        <p><em>摘要</em> 系统中定时执行某个任务是比较常用的功能，基于软件很好实现此功能。但是在网页中，要怎么实现定时执行任务呢。这里就简单说说在asp.net mvc中如何实现定时执行某个功能的方法。<br><a id="more"></a><br>根据不同需求，在web开发中，有时候我们可能要定时的执行一下任务，比如定时更新网站数据，这时我们就需要做一个定时执行更新的操作，但由于web的http是无状态的连接，如何才能时时进行任务的更新呢?</p>
+        <p><em>摘要：</em> 系统中定时执行某个任务是比较常用的功能，基于软件很好实现此功能。但是在网页中，要怎么实现定时执行任务呢。这里就简单说说在asp.net mvc中如何实现定时执行某个功能的方法。<br><a id="more"></a><br>根据不同需求，在web开发中，有时候我们可能要定时的执行一下任务，比如定时更新网站数据，这时我们就需要做一个定时执行更新的操作，但由于web的http是无状态的连接，如何才能时时进行任务的更新呢?</p>
 <h2 id="1-__u9996_u5148_u4FEE_u6539Glocal-asax_u6587_u4EF6_uFF0C_u5728Application_Start_u65B9_u6CD5_u6700_u4E0B_u9762_u52A0_u5165_uFF1A"><a href="#1-__u9996_u5148_u4FEE_u6539Glocal-asax_u6587_u4EF6_uFF0C_u5728Application_Start_u65B9_u6CD5_u6700_u4E0B_u9762_u52A0_u5165_uFF1A" class="headerlink" title="1. 首先修改Glocal.asax文件，在Application_Start方法最下面加入："></a>1. 首先修改Glocal.asax文件，在Application_Start方法最下面加入：</h2><pre><code>//定义定时器
 //1000表示1秒的意思
  System.Timers.Timer myTimer = new System.Timers.Timer(1000);
@@ -356,6 +356,10 @@ myTimer.AutoReset = true;
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/06/22/利用TCP-UDP协议实现简单的聊天工具-上/" rel="prev" title="利用TCP/UDP协议实现简单的聊天工具(上)">
+                利用TCP/UDP协议实现简单的聊天工具(上) <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -446,7 +450,7 @@ myTimer.AutoReset = true;
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-count">4</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -539,8 +543,8 @@ myTimer.AutoReset = true;
       <div class="footer-inner">
         <div class="copyright" >
   
-  &copy; 
-  <span itemprop="copyrightYear">2015</span>
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
   <span class="with-love">
     <i class="icon-next-heart fa fa-heart"></i>
   </span>
