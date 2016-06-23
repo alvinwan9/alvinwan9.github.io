@@ -1,0 +1,1100 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.0" />
+
+
+
+
+
+
+<meta name="description" content="摘要： 学校计算机网络的课设我选的题目就是基于TCP协议编程的方式，编写程序模拟网络聊天室。本文章就简要的介绍一下我所做的这个简陋的聊天工具。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用TCP/UDP协议实现简单的聊天工具(下)">
+<meta property="og:url" content="http://yoursite.com/2016/06/23/利用TCP-UDP协议实现简单的聊天工具-下/index.html">
+<meta property="og:site_name" content="WanGzhE's blog">
+<meta property="og:description" content="摘要： 学校计算机网络的课设我选的题目就是基于TCP协议编程的方式，编写程序模拟网络聊天室。本文章就简要的介绍一下我所做的这个简陋的聊天工具。">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1353313-51b46196cbcb8d1b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1353313-bb5e162218e962dd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1353313-9e75966fb68668f9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1353313-1264e850427d42a6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1353313-478215ac4bac4763.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1353313-f7c2237a1f29adf3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1353313-3417f81c957cd912.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1353313-5e13b941c13a393c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1353313-1ca5c1cfe24dc71a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2016-06-23T11:58:19.808Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="利用TCP/UDP协议实现简单的聊天工具(下)">
+<meta name="twitter:description" content="摘要： 学校计算机网络的课设我选的题目就是基于TCP协议编程的方式，编写程序模拟网络聊天室。本文章就简要的介绍一下我所做的这个简陋的聊天工具。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: '[object Object]',
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 利用TCP/UDP协议实现简单的聊天工具(下) | WanGzhE's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?9937d6a6bde352b62ab021cef6bbe36a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">WanGzhE's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">王哲 个人博客</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                利用TCP/UDP协议实现简单的聊天工具(下)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-23T19:57:54+08:00" content="2016-06-23">
+              2016-06-23
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/23/利用TCP-UDP协议实现简单的聊天工具-下/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/23/利用TCP-UDP协议实现简单的聊天工具-下/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><em>摘要：</em> 学校计算机网络的课设我选的题目就是基于TCP协议编程的方式，编写程序模拟网络聊天室。本文章就简要的介绍一下我所做的这个简陋的聊天工具。<br><a id="more"></a><br>上一篇文章文件介绍了服务端的搭建，这篇文章就介绍一下客户端吧。废话不多说先来看看客户端的几个截图。<br>【登录界面】<br><img src="http://upload-images.jianshu.io/upload_images/1353313-51b46196cbcb8d1b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="登录"><br>【注册界面】<br><img src="http://upload-images.jianshu.io/upload_images/1353313-bb5e162218e962dd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="注册"><br>【群聊界面】<br><img src="http://upload-images.jianshu.io/upload_images/1353313-9e75966fb68668f9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="群聊"><br>【私聊界面】<br><img src="http://upload-images.jianshu.io/upload_images/1353313-1264e850427d42a6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="私聊"></p>
+<p>界面都挺简陋的，但是关键在于功能的实现嘛！让我们首先来看一下登录界面中<strong>注册按钮</strong>的代码吧！</p>
+<hr>
+<p>btn_SignUp_Click(object sender, EventArgs e)代码</p>
+<pre><code>private void btn_SignUp_Click(object sender, EventArgs e)
+ {
+     if (string.IsNullOrEmpty(tb_IP.Text.Trim()) || string.IsNullOrEmpty(tb_Port.Text.Trim()))
+         MessageBox.Show(&quot;服务器IP、端口不能为空&quot;);
+     else
+     {
+         SignUp sign = new SignUp();
+         sign.ServerIP = tb_IP.Text;
+         sign.ServerPort = tb_Port.Text;
+         sign.ShowDialog();
+     }   
+ }
+</code></pre><p>这个方法十分的简单，关键就在于要将登录的服务器IP与端口传递到注册界面。我们来看一下<strong>注册界面</strong>的代码。</p>
+<hr>
+<p><strong>注册按钮</strong> btn_submit_Click(object sender, EventArgs e)代码</p>
+<pre><code>private void btn_submit_Click(object sender, EventArgs e)
+ {
+     string username = tb_name.Text.Trim();
+     string password = tb_password.Text.Trim();
+     string cpassword = tb_cpassword.Text.Trim();
+     if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(cpassword))
+         MessageBox.Show(&quot;不能为空！&quot;);
+     else
+     {
+         if (!password.Equals(cpassword))
+         {
+             MessageBox.Show(&quot;两次密码不一致！&quot;);
+         }
+         else
+         {
+
+             try
+             {
+                 tc = new TcpClient(ServerIP, int.Parse(ServerPort));
+                 //实例化网络流对象
+                 ns = tc.GetStream();
+                 br = new BinaryReader(ns);
+                 bw = new BinaryWriter(ns);
+
+                 bool isSignUp = true;
+                 StringBuilder sb = new StringBuilder();
+                 sb.Append(&quot;signup#&quot;);
+                 sb.Append(username + &quot;#&quot; + password);
+                 bw.Write(sb.ToString());
+                 bw.Flush();
+                 string info = null;
+                 try
+                 {
+                     info = br.ReadString();
+                 }
+                 catch (Exception)
+                 {
+                     MessageBox.Show(&quot;服务器无响应&quot;);
+                 }
+                 if (info == null)
+                 {
+                     MessageBox.Show(&quot;注册失败&quot;);
+                 }
+                 else
+                 {
+                     string[] splitString = info.Split(&apos;#&apos;);
+                     switch (splitString[0])
+                     {
+                         case &quot;null&quot;:
+                             MessageBox.Show(&quot;用户名或密码为空！&quot;);
+                             break;
+                         case &quot;accounted&quot;:
+                             MessageBox.Show(&quot;用户名已被占用！&quot;);
+                             break;
+                         case &quot;success&quot;:
+                             MessageBox.Show(&quot;注册成功！&quot;);
+                             isSignUp = false;
+                             this.Hide();
+                             break;
+                         case &quot;error&quot;:
+                             MessageBox.Show(&quot;未知错误！&quot;);
+                             break;
+                     }
+                 }
+                 br.Close();
+                 bw.Close();
+                 tc.Close();
+             }
+             catch (Exception)
+             {
+                 MessageBox.Show(&quot;连接服务器失败&quot;);
+             }
+         }
+     }
+ }
+</code></pre><p>看了这段代码可以发现，我在注册界面中建立了<strong>单独的TCP连接</strong>，此次的连接只限于注册功能，注册结束后（无论成功与否）该连接会断开。<strong>避免</strong>了与登录建立的TCP连接发送<strong>冲突</strong>。<br>看完了注册界面的代码，我们再回到登录界面看一看<strong>登录按钮</strong>的代码。</p>
+<hr>
+<p>btn_Login_Click(object sender, EventArgs e)代码</p>
+<pre><code>private void btn_Login_Click(object sender, EventArgs e)
+  {
+      string username = tb_Username.Text.Trim();
+      string password = tb_Password.Text.Trim();
+      string ipstr = tb_IP.Text.Trim();
+      string poitstr = tb_Port.Text.Trim();
+
+      StringBuilder sb = new StringBuilder();
+      sb.Append(&quot;login#&quot;);
+      sb.Append(username + &quot;#&quot; + password);
+
+      try
+      {
+          lb_ShowMsg.Text = &quot;正在连接到主机&quot;;
+          tc = new TcpClient(ipstr, int.Parse(poitstr));
+          //实例化网络流对象
+          ns = tc.GetStream();
+          br=new BinaryReader(ns);
+          bw=new BinaryWriter(ns);
+          bw.Write(sb.ToString());
+          bw.Flush();
+          string info = null;
+          try
+          {
+             info = br.ReadString();
+          }
+          catch (Exception)
+          {
+              lb_ShowMsg.Text = &quot;服务器无响应&quot;;
+          }
+          if (info == null)
+          {
+              lb_ShowMsg.Text = &quot;登陆失败&quot;;
+          }
+          else
+          {
+              string[] splitString = info.Split(&apos;#&apos;);
+              switch (splitString[0])
+              {
+                  case &quot;login fail&quot;:
+                      lb_ShowMsg.Text = &quot;用户名或密码错误&quot;;
+                      break;
+                  case &quot;already login&quot;:
+                      lb_ShowMsg.Text = &quot;请不要重复登陆&quot;;
+                      break;
+                  case &quot;users&quot;:
+                      Main main = new Main();
+                      main.Username = username;
+                      main.Users = info;
+                      main.ServerIP = tb_IP.Text.Trim();
+                      main.ServerPort = tb_Port.Text.Trim();
+                      main.Br = br;
+                      main.Bw = bw;
+                      this.Hide();
+                      main.ShowDialog();
+                      break;
+                  default:
+                      MessageBox.Show(info);
+                      break;
+              }
+          }
+      }
+      catch
+      {
+          lb_ShowMsg.Text = &quot;无法连接到主机&quot;;
+      }
+  }
+</code></pre><p>这个方法这主要做这么几件事：</p>
+<ol>
+<li>与服务器建立可靠的<strong>TCP</strong>连接。</li>
+<li>向服务器中发送登录请求（格式自定义，只要服务器和客户端协商一致即可）。</li>
+<li>对服务器回馈的消息进行处理。</li>
+</ol>
+<p>在确认登录成功之后，将针对网络流的<strong>读</strong>和<strong>写</strong>参数传递给了下一界面（群聊界面），在此可能有人会好奇为什么到现在都没有使用<strong>多线程</strong>，其实大家仔细想一下就会发现，在这个地方只需要在登录验证这里需要读取服务端发回的数据，没有必要反复接收数据，所以不存在程序会因为别的消息到此而发生无法处理的情形。至于聊天内容的传输那也是你登录成功之后的事，于是就知道了登录成功之后会开启多线程。</p>
+<p>来让我们看一下群聊界面的一些方法</p>
+<hr>
+<pre><code>private void Main_Load(object sender, EventArgs e)
+{
+    Control.CheckForIllegalCrossThreadCalls = false;
+    this.Text = Username;
+    LoadUser();
+    StartListen();
+}
+</code></pre><p>这是一个窗口构造函数，这里对<em>Control.CheckForIllegalCrossThreadCalls = false;</em>进行一下说明<br>在多线程程序中，新创建的线程不能访问UI线程创建的窗口控件，如果需要访问窗口中的控件，可以在窗口构造函数中将CheckForIllegalCrossThreadCalls设置为 false。关于这个设置的说网上的文章很多，都不建议不要使用这个方法，但是在此我就是为了实现功能，具体原因大家自行百度吧。<br>在此贴出一篇文章 <a href="http://blog.csdn.net/jinjazz/article/details/1927126" target="_blank" rel="external">Control.CheckForIllegalCrossThreadCalls=false不可在多线中随便使用</a></p>
+<hr>
+<p>LoadUser()代码</p>
+<pre><code>private void LoadUser()
+   {
+       if (string.IsNullOrEmpty(Users))
+           return;
+       this.lv_Userlist.Items.Clear();
+       UserList.Clear();
+       Users = Users.Replace(&quot;users#&quot;, &quot;&quot;);
+       string[] _userindex = Users.Split(&apos;#&apos;);
+
+       foreach (string s in _userindex)
+       {
+           User user = new User();
+           string[] _index = s.Split(&apos;;&apos;);
+           //解析出IP和端口
+           string[] ips = _index[0].Split(&apos;:&apos;);
+           user.IP = ips[0];
+           user.Port = int.Parse(ips[1]);
+           //解析出用户名
+           user.Username = _index[1];
+           if (user.Username != this.Username)
+           {
+               ListViewItem lvitem = new ListViewItem();
+
+               lvitem.ImageIndex = 0;
+               lvitem.Text = user.Username;
+               lvitem.Tag = _index[0];
+               this.lv_Userlist.Items.Add(lvitem);
+               UserList.Add(user);
+           }
+           else
+           {
+               IP = user.IP;
+               this.Port = user.Port;
+           }
+           lb_num.Text = (UserList.Count+1).ToString();
+       }
+   }
+</code></pre><p>这个函数就是加载在线的用户，在收到服务器回馈的指定的消息时调用此函数。</p>
+<hr>
+<pre><code>private void StartListen()
+{
+    iswork = true;
+    //udp消息监听
+    Thread th = new Thread(new ThreadStart(UdpListen));
+    //设置为后台
+    th.IsBackground = true;
+    th.Start();
+    //tcp消息监听
+    Thread tcpth = new Thread(TcpListen);
+    tcpth.IsBackground = true;
+    tcpth.Start();
+}
+</code></pre><p>在这里我们会发现开启了两个监听服务，一个是TCP服务，用于与服务器进行通信，以实现群聊功能。另外一个就是UDP服务，因为UDP传输快，不用建立连接所以适合与其他客户端进行单独通信。</p>
+<hr>
+<pre><code>  //监听客户端之间的通信
+private void UdpListen()
+   {
+       uc = new UdpClient(Port);
+       IPEndPoint iep = new IPEndPoint(IPAddress.Any, 0);
+       while (iswork)
+       {
+           string text = System.Text.Encoding.UTF8.GetString(uc.Receive(ref iep));
+           string[] infos = text.Split(&apos;#&apos;);
+           string command = infos[0];
+           string fromuser = infos[1];
+           string message = infos[2];
+           switch (command)
+           {
+               case &quot;singlemsg&quot;:
+                   Talking _tk = isHaveTalk(fromuser);
+                   if (_tk != null)
+                   {
+                       this.BeginInvoke(new MethodInvoker(delegate()
+                       {
+                           _tk.Focus();
+                           _tk.AddMessage(message, true);
+                       }));
+                   }
+                   else
+                   {
+                       this.BeginInvoke(new MethodInvoker(delegate()
+                       {
+                           this.CreatTalking(text);
+                       }));
+                   }
+                   break;
+           }   
+       }
+   }
+   //监听服务器端发来的消息
+   private void TcpListen()
+   {
+       while (iswork)
+       {
+           string receiveMsg = null;
+           try
+           {
+               receiveMsg = Br.ReadString();
+           }
+           catch (Exception)
+           {
+           }
+           if (receiveMsg != null)
+           {
+               string command = string.Empty;
+               string[] splitStrings = receiveMsg.Split(&apos;#&apos;);
+               command = splitStrings[0];
+               switch (command)
+               {
+                   case &quot;barchmsg&quot;:
+                       AddMessage(receiveMsg, true);
+                       break;
+                   case &quot;users&quot;:
+                       Users = receiveMsg.Replace(&quot;users#&quot;, &quot;&quot;);
+                       LoadUser();
+                       break;
+               }
+           }
+       }
+   }
+</code></pre><p>两个监听服务，TCP监听和服务器端的类似，UDP监听时刻监听本地的端口一有UDP消息发来，就根据发来的消息进单独对话。</p>
+<hr>
+<p>创建聊天对话窗体</p>
+<pre><code>public void CreatTalking(object _text)
+{
+    string[] infos = _text.ToString().Split(&apos;#&apos;);
+    //string command = infos[0];
+    string fromuser = infos[1];
+    string message = infos[2];
+    Talking talk = new Talking(message);
+    talk.UserName = Username;
+    talk.ToName = fromuser;
+    talk.ToIP = GetIP(fromuser);
+    TalkList.Add(talk);
+    talk.Show();
+}
+</code></pre><hr>
+<p>对话窗体中的发送按钮</p>
+<pre><code>private void btn_Send_Click(object sender, EventArgs e)
+  {
+      string temp = this.tb_SendMsg.Text; //保存TextBox文本
+      //将该文本转化为字节数组
+      byte[] b = System.Text.Encoding.UTF8.GetBytes(&quot;singlemsg#&quot; + UserName + &quot;#&quot; + temp);
+      string[] _ip = ToIP.Split(&apos;:&apos;);
+      uc.Send(b, b.Length, _ip[0], int.Parse(_ip[1]));
+      AddMessage(temp, false);
+      this.tb_SendMsg.Clear();
+  }
+</code></pre><hr>
+<p>好了以上就是客户端中的主要代码了，激动人心的时刻到了，让我看一些测试的结果吧！由于是本地测试服务器IP我就填写了127.0.0.1回环测试的用的，不用联网也可以的。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1353313-478215ac4bac4763.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="群聊1"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1353313-f7c2237a1f29adf3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="群聊2"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1353313-3417f81c957cd912.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="私聊1"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1353313-5e13b941c13a393c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="私聊2"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1353313-1ca5c1cfe24dc71a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="服务器端"></p>
+<p>可以看出功能基本都是实现了，本次博客也写到这里了，最后附上我项目的源码 <a href="https://github.com/wangzhe0828/ChatRoom" target="_blank" rel="external">基于TCP协议编程的网络聊天室</a></p>
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/06/22/利用TCP-UDP协议实现简单的聊天工具-上/" rel="next" title="利用TCP/UDP协议实现简单的聊天工具(上)">
+                <i class="fa fa-chevron-left"></i> 利用TCP/UDP协议实现简单的聊天工具(上)
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/06/23/利用TCP-UDP协议实现简单的聊天工具-下/"
+     data-title="利用TCP/UDP协议实现简单的聊天工具(下)"
+     data-content=""
+     data-url="http://yoursite.com/2016/06/23/利用TCP-UDP协议实现简单的聊天工具-下/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/06/23/利用TCP-UDP协议实现简单的聊天工具-下/"
+           data-title="利用TCP/UDP协议实现简单的聊天工具(下)" data-url="http://yoursite.com/2016/06/23/利用TCP-UDP协议实现简单的聊天工具-下/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="WanGzhE" />
+          <p class="site-author-name" itemprop="name">WanGzhE</p>
+          <p class="site-description motion-element" itemprop="description">What makes life dreary is the want of motive.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">0</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">0</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wangzhe0828" target="_blank">
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/3296319381" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> weibo
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> Others
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">WanGzhE</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  
+
+
+  
+
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.0"></script>
+
+
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"wangzhe0828"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+
+  
+  
+
+
+</body>
+</html>
